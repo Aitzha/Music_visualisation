@@ -21,9 +21,7 @@ var spectrumDivider = 16;
 var figuresForSpectrum3 = ["triangle", "squares"];
 var modesForSpectrum3 = [1, 2];
 
-var tutorial = false;
-var menuOpen = true;
-var menuPosX = 0;
+var menu;
 
 function preload(){
 	curSound = "Electroman Adventure";
@@ -66,6 +64,8 @@ function preload(){
 function setup(){
 	 createCanvas(windowWidth, windowHeight, WEBGL);
 	 smooth();
+	menu = new Menu();
+	menu.posX = width / 8;
 	 controls = new ControlsAndInput();
 
 	 //instantiate the fft object
@@ -98,8 +98,6 @@ function setup(){
 	 images.x.push(width / 2 - height / 3 - 7); images.y.push(height / 6 - 7); images.width.push(height / 1.5 + 17);
 	 images.x.push(width / 2 - height / 5); images.y.push(height / 4); images.width.push(0);
 	 images.x.push(width / 2 - height / 4 + 7); images.y.push(height / 4 - 10); images.width.push(height / 2);
-
-	 menuPosX = width / 8;
 }
 
 function draw(){
@@ -108,34 +106,16 @@ function draw(){
 
 	//update frame rate
 	frameRate(fps);
-	translate(-width / 2, -height / 2);
+
 	//tutorial
-	if(!tutorial) {
-		rectMode(CENTER);
-		fill(137,207,240);
-		rect3(0, 0, width / 2, height / 2, 20);
-		fill(93,63,211);
-		textSize(30);
-		text("Press (Space) button to open menu", -width/6, -100);
-		text("Press (Enter) to close to tutorial", -width/6, 100);
-		fill(255);
-		rectMode(CORNER);
+	if(!menu.tutorial) {
+		menu.drawTutorial()
 	} else {
 		//draw the selected visualisation
-
+		translate(-width / 2, -height / 2);
 		vis.selectedVisual.draw();
 
-		fill(137,207,240,200);
-		if(menuOpen) {
-			menuPosX = constrain(menuPosX + width / 8 / fps, 0, width / 8);
-			rect3(menuPosX - width / 16, height / 2, width / 8, height / 1.5, 15);
-			rect3(17 * width / 16 - menuPosX, height / 2, width / 8, height / 1.5, 15);
-		} else {
-			menuPosX = constrain(menuPosX - width / 8 / fps, 0, width / 8);
-			rect3(menuPosX - width / 16, height / 2, width / 8, height / 1.5, 15);
-			rect3(17 * width / 16 - menuPosX, height / 2, width / 8, height / 1.5, 15);
-		}
-
+		menu.draw()
 
 		//update the song
 		if(song != curSound) {

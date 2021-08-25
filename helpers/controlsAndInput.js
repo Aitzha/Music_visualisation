@@ -2,8 +2,6 @@
 //controls
 function ControlsAndInput(){
 	
-	this.menuDisplayed = true;
-	
 	//playback button displayed in the top left of the screen
 	this.playbackButton = new PlaybackButton();
 
@@ -16,13 +14,13 @@ function ControlsAndInput(){
 	//@param keycode the ascii code of the keypressed
 	this.keyPressed = function(keycode){
 		console.log(keycode);
-		if(keycode == 32 && tutorial == true){
+		if(keycode == 32 && menu.tutorial == true){
 			this.menuDisplayed = !this.menuDisplayed;
-			menuOpen = !menuOpen;
+			menu.open = !menu.open
 		}
 
 		if(keycode == 13) {
-			tutorial = true;
+			menu.tutorial = true;
 		}
 
 		if(keycode > 48 && keycode < 58){
@@ -43,18 +41,16 @@ function ControlsAndInput(){
 		this.playbackButton.draw();
 		//only draw the menu if menu displayed is set to true.
 
-		if(this.menuDisplayed){
-			fill(93,63,211);
-			text("Select a visualisation", width / 50, height / 5);
-			this.menu();
-		}	
+		fill(93,63,211);
+		text("Select a visualisation", width / 50 + menu.posX - width / 8, height / 5);
+		this.menu();
 		pop();
 
 	};
 
 	this.menu = function(){
 		for(var i = 0; i < vis.visuals.length; i++) {
-			text(vis.visuals[i].name, width / 50, height / 5 + (height / 30 * (i + 1)));
+			text(vis.visuals[i].name, width / 50 + menu.posX - width / 8, height / 5 + (height / 30 * (i + 1)));
 		}
 	};
 }
