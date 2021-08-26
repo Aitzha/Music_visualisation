@@ -1,5 +1,7 @@
 //container function for the visualisations
 function Visualisations(){
+	this.x = width / 50;
+	this.y = height / 5;
 	//array to store visualisations
 	this.visuals = [];
 	//currently selected vis. set to null until vis loaded in
@@ -9,6 +11,8 @@ function Visualisations(){
 	//@param vis: a visualisation object
 	this.add = function(vis){
 		this.visuals.push(vis);
+		vis.x = this.x;
+		vis.y = this.y + (height / 30 * this.visuals.length)
 		//if selectedVisual is null set the new visual as the 
 		//current visualiation
 		if(this.selectedVisual == null){

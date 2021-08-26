@@ -1,5 +1,9 @@
 function Circle(){
     this.name = "circle";
+    this.x = 0;
+    this.y = 0;
+    this.w = textWidth(this.name);
+    this.used = false;
     this.particles = new Particles();
     this.initialAngle = 0;
 

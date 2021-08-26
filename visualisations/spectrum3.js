@@ -1,5 +1,9 @@
 function Spectrum3() {
     this.name = "spectrum #3";
+    this.x = 0;
+    this.y = 0;
+    this.w = textWidth(this.name);
+    this.used = false;
     this.figures = new Figures();
 
     this.draw = function(){

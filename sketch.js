@@ -64,21 +64,22 @@ function preload(){
 function setup(){
 	 createCanvas(windowWidth, windowHeight, WEBGL);
 	 smooth();
-	menu = new Menu();
-	menu.posX = width / 8;
+	 menu = new Menu();
+	 menu.posX = width / 8;
+
+	 vis = new Visualisations();
+	 vis.add(new Spectrum());
+	 vis.add(new Spectrum2());
+	 vis.add(new Spectrum3());
+	 vis.add(new Circle());
+
 	 controls = new ControlsAndInput();
 
 	 //instantiate the fft object
 	 fourier = new p5.FFT();
 
 	 //create a new visualisation container and add visualisations
-	 vis = new Visualisations();
-	 vis.add(new Spectrum());
-	 vis.add(new Spectrum2());
-	 vis.add(new Spectrum3());
-	 vis.add(new WavePattern());
-	 vis.add(new Needles());
-	 vis.add(new Circle());
+
 
 	 //create graphical user interface
 	 gui = createGui("Music visualiser controller");
@@ -98,6 +99,8 @@ function setup(){
 	 images.x.push(width / 2 - height / 3 - 7); images.y.push(height / 6 - 7); images.width.push(height / 1.5 + 17);
 	 images.x.push(width / 2 - height / 5); images.y.push(height / 4); images.width.push(0);
 	 images.x.push(width / 2 - height / 4 + 7); images.y.push(height / 4 - 10); images.width.push(height / 2);
+
+
 }
 
 function draw(){
@@ -109,13 +112,13 @@ function draw(){
 
 	//tutorial
 	if(!menu.tutorial) {
-		menu.drawTutorial()
+		menu.drawTutorial();
 	} else {
 		//draw the selected visualisation
 		translate(-width / 2, -height / 2);
 		vis.selectedVisual.draw();
 
-		menu.draw()
+		menu.drawMenu()
 
 		//update the song
 		if(song != curSound) {

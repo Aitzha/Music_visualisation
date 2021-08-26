@@ -1,5 +1,10 @@
 function Spectrum(){
 	this.name = "spectrum";
+	this.x = 0;
+	this.y = 0;
+
+	this.w = textWidth(this.name);
+	this.used = true;
 
 	this.draw = function(){
 		push();

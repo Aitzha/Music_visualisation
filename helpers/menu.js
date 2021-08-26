@@ -3,7 +3,7 @@ function Menu(){
     this.open = true;
     this.posX = 0;
 
-    this.draw = function(){
+    this.drawMenu = function(){
         fill(137,207,240,200);
         if(this.open) {
             this.posX = constrain(this.posX + width / 8 / fps, 0, width / 8);
@@ -27,4 +27,6 @@ function Menu(){
         fill(255);
         rectMode(CORNER);
     }
+
+
 }
