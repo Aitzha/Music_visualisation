@@ -67,11 +67,16 @@ function setup(){
 	 menu = new Menu();
 	 menu.posX = width / 8;
 
-	 vis = new Visualisations();
-	 vis.add(new Spectrum());
-	 vis.add(new Spectrum2());
-	 vis.add(new Spectrum3());
-	 vis.add(new Circle());
+	 // vis = new Visualisations();
+	 // vis.add(new Spectrum());
+	 // vis.add(new Spectrum2());
+	 // vis.add(new Spectrum3());
+	 // vis.add(new Circle());
+
+	menu.add(new Spectrum());
+	menu.add(new Spectrum2());
+	menu.add(new Spectrum3());
+	menu.add(new Circle());
 
 	 controls = new ControlsAndInput();
 
@@ -113,11 +118,16 @@ function draw(){
 	//tutorial
 	if(!menu.tutorial) {
 		menu.drawTutorial();
+		for(var i = 0; i < menu.visuals.length; i++) {
+			textSize(width / 120);
+			menu.visuals[i].w = textWidth(menu.visuals[i].name);
+		}
 	} else {
 		//draw the selected visualisation
 		translate(-width / 2, -height / 2);
-		vis.selectedVisual.draw();
+		// vis.selectedVisual.draw();
 
+		menu.selectedVisual.draw();
 		menu.drawMenu()
 
 		//update the song
