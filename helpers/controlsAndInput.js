@@ -11,38 +11,12 @@ function ControlsAndInput(){
 		if(this.playbackButton.hitCheck());
 
 		var selected = -1;
-		// for(var i = 0; i < vis.visuals.length; i++) {
-		// 	var x = vis.visuals[i].x + menu.posX - width / 8;
-		// 	var y = vis.visuals[i].y;
-		// 	var w = vis.visuals[i].w;
-		// 	var h = width / 120;
-		// 	noFill();
-		// 	strokeWeight(5);
-		// 	stroke(255, 0, 0);
-		//
-		// 	if(mouseX >= x && mouseX <= w + x && mouseY >= y - h && mouseY <= y) {
-		// 		console.log("mouseX " + mouseX);
-		// 		console.log("width " + w);
-		// 		console.log("width " + x + w);
-		// 		console.log('x ' + x);
-		// 		selected = i;
-		// 	}
-		// }
-		//
-		// if(selected != -1) {
-		// 	vis.visuals[this.selected].used = false;
-		// 	vis.visuals[selected].used = true;
-		// 	this.selected = selected;
-		// }
-
+		textSize(width / 120);
 		for(var i = 0; i < menu.visuals.length; i++) {
 			var x = menu.visuals[i].x + menu.posX - width / 8;
 			var y = menu.visuals[i].y;
-			var w = menu.visuals[i].w;
+			var w = menu.visuals[i].w + textWidth(i + 1 + " ");
 			var h = width / 120;
-			noFill();
-			strokeWeight(5);
-			stroke(255, 0, 0);
 
 			if(mouseX >= x && mouseX <= w + x && mouseY >= y - h && mouseY <= y) {
 				console.log("mouseX " + mouseX);
@@ -68,7 +42,7 @@ function ControlsAndInput(){
 		console.log(keycode);
 		if(keycode == 32 && menu.tutorial == true){
 			this.menuDisplayed = !this.menuDisplayed;
-			menu.open = !menu.open
+			menu.menuOPen = !menu.menuOPen
 		}
 
 		if(keycode == 13) {
@@ -77,7 +51,6 @@ function ControlsAndInput(){
 
 		if(keycode > 48 && keycode < 58){
 			var visNumber = keycode - 49;
-			// vis.selectVisual(vis.visuals[visNumber].name);
 			menu.selectedVisual = menu.visuals[visNumber];
 		}
 	};
@@ -103,24 +76,13 @@ function ControlsAndInput(){
 	};
 
 	this.menu = function(){
-		// for(var i = 0; i < vis.visuals.length; i++) {
-		// 	if(vis.visuals[i].used) {
-		// 		fill(255);
-		// 		// console.log("width2 " + textWidth(vis.visuals[i].name));
-		// 	} else {
-		// 		fill(93,63,211);
-		// 	}
-		// 	text(vis.visuals[i].name, vis.visuals[i].x + menu.posX - width / 8, vis.visuals[i].y);
-		// }
-
 		for(var i = 0; i < menu.visuals.length; i++) {
 			if(menu.visuals[i].used) {
 				fill(255);
-				// console.log("width2 " + textWidth(vis.visuals[i].name));
 			} else {
 				fill(93,63,211);
 			}
-			text(menu.visuals[i].name, menu.visuals[i].x + menu.posX - width / 8, menu.visuals[i].y);
+			text((i + 1) + " " + menu.visuals[i].name, menu.visuals[i].x + menu.posX - width / 8, menu.visuals[i].y);
 		}
 	};
 }

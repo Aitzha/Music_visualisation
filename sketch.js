@@ -1,7 +1,5 @@
 //global for the controls and input 
 var controls = null;
-//store visualisations in a container
-var vis = null;
 //variable for the p5 sound object
 var sound = null;
 var curSound = "none";
@@ -67,11 +65,6 @@ function setup(){
 	 menu = new Menu();
 	 menu.posX = width / 8;
 
-	 // vis = new Visualisations();
-	 // vis.add(new Spectrum());
-	 // vis.add(new Spectrum2());
-	 // vis.add(new Spectrum3());
-	 // vis.add(new Circle());
 
 	menu.add(new Spectrum());
 	menu.add(new Spectrum2());
@@ -125,7 +118,6 @@ function draw(){
 	} else {
 		//draw the selected visualisation
 		translate(-width / 2, -height / 2);
-		// vis.selectedVisual.draw();
 
 		menu.selectedVisual.draw();
 		menu.drawMenu()
