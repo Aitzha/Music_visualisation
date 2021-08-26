@@ -22,7 +22,7 @@ function Figures() {
 
         for(var i = 0; i < this.n; i++) {
             push();
-            translate(this.xPos[i], this.yPos[i]);
+            translate(this.xPos[i], this.yPos[i], -20);
             rotateX(this.curX[i]);
             rotateY(this.curY[i]);
             rotateZ(this.curZ[i]);

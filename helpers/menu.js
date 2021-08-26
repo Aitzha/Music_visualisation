@@ -4,25 +4,44 @@ function Menu(){
     //menu open state and its x-axis position
     this.menuOpen = true;
     this.posX = 0;
+
     //visuals start position
     this.x = width / 50;
     this.y = height / 5;
     //array to store visualisations
     this.visuals = [];
     //currently selected vis. set to null until vis loaded in
-    this.selectedVisual = null;
+    this.selectedVisIndex = null;
+
+    //songs
+    this.names = [];
+    this.songs = [];
 
     this.drawMenu = function(){
         fill(137,207,240,200);
+        push();
+        translate(0, 0, 1);
         if(this.menuOpen) {
             this.posX = constrain(this.posX + width / 8 / fps, 0, width / 8);
-            rect3(this.posX - width / 16, height / 2, width / 8, height / 1.5, 15);
-            rect3(17 * width / 16 - this.posX, height / 2, width / 8, height / 1.5, 15);
         } else {
             this.posX = constrain(this.posX - width / 8 / fps, 0, width / 8);
-            rect3(this.posX - width / 16, height / 2, width / 8, height / 1.5, 15);
-            rect3(17 * width / 16 - this.posX, height / 2, width / 8, height / 1.5, 15);
         }
+
+        rect3(this.posX - width / 16, height / 2, width / 8, height / 1.5, 15);
+        rect3(17 * width / 16 - this.posX, height / 2, width / 8, height / 1.5, 15);
+
+        fill(93,63,211);
+        text("Select a visualisation", this.x + this.posX - width / 8, this.y);
+
+        for(var i = 0; i < this.visuals.length; i++) {
+            if(this.visuals[i].used) {
+                fill(255);
+            } else {
+                fill(93,63,211);
+            }
+            text((i + 1) + " " + this.visuals[i].name, this.visuals[i].x + this.posX - width / 8, this.visuals[i].y);
+        }
+        pop();
     }
 
     //shows tutorial at the beginning
@@ -46,8 +65,8 @@ function Menu(){
         vis.x = this.x;
         vis.y = this.y + (height / 30 * this.visuals.length)
         //if selectedVisual is null set the new visual as the
-        if(this.selectedVisual == null) {
-            this.selectedVisual = vis;
+        if(this.selectedVisIndex == null) {
+            this.selectedVisIndex = this.visuals.length - 1;
         }
     };
 }

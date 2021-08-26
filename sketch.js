@@ -119,7 +119,7 @@ function draw(){
 		//draw the selected visualisation
 		translate(-width / 2, -height / 2);
 
-		menu.selectedVisual.draw();
+		menu.visuals[menu.selectedVisIndex].draw();
 		menu.drawMenu()
 
 		//update the song

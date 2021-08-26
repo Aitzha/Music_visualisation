@@ -30,7 +30,6 @@ function Spectrum3() {
         this.figures.draw();
         stroke(0 ,0, 255);
 
-        translate(0, 0, 20);
         if(modesForSpectrum3 == 1) {
             for(var i = 0; i < 4; i++) {
                 beginShape();
