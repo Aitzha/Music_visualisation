@@ -1,10 +1,7 @@
 //global for the controls and input 
 var controls = null;
 //variable for the p5 sound object
-var sound = null;
-var curSound = "none";
 var songs = null;
-var song = [];
 //variable for p5 fast fourier transform
 var fourier;
 //images which will be used in circle
@@ -22,10 +19,7 @@ var modesForSpectrum3 = [1, 2];
 var menu;
 
 function preload(){
-	curSound = "Electroman Adventure";
-	sound = loadSound("assets/ElectromanAdverture.mp3");
-
-	songs = new Songs();
+	songs = new SongsList();
 	songs.names.push("Electroman Adventure");
 	songs.songs.push(loadSound("assets/ElectromanAdverture.mp3"));
 	songs.names.push("Game on");
@@ -34,11 +28,6 @@ function preload(){
 	songs.songs.push(loadSound("assets/Titanium.mp3"));
 	songs.names.push("cool song");
 	songs.songs.push(loadSound("assets/stomper_reggae_bit.mp3"));
-
-	song.push(songs.names[0]);
-	song.push(songs.names[1]);
-	song.push(songs.names[2]);
-	song.push(songs.names[3]);
 
 	images = new Images();
 	//image name, x and y positions, width and image itself
@@ -121,18 +110,6 @@ function draw(){
 
 		menu.visuals[menu.selectedVisIndex].draw();
 		menu.drawMenu()
-
-		//update the song
-		// if(song != curSound) {
-		// 	for(var i = 0; i < songs.names.length; i++) {
-		// 		if(song == songs.names[i]) {
-		// 			sound.stop();
-		// 			sound = songs.songs[i];
-		// 			curSound = songs.names[i];
-		// 			sound.loop();
-		// 		}
-		// 	}
-		// }
 
 		//draw the controls on top.
 		controls.draw();

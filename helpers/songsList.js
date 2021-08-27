@@ -1,4 +1,4 @@
-function Songs() {
+function SongsList() {
     this.names = [];
     this.songs = [];
 }
