@@ -1,4 +1,5 @@
 function SongsList() {
     this.names = [];
-    this.songs = [];
+    this.list = [];
+    this.curTime = 0;
 }

@@ -37,8 +37,6 @@ function ControlsAndInput(){
 			var w = textWidth(i + 1 + " " + songs.names[i]);
 			var h = width / 120;
 
-			// rect(x, y - h, w, h);
-
 			if(mouseX >= x && mouseX <= w + x && mouseY >= y - h && mouseY <= y) {
 				selectedSong = i;
 			}
@@ -46,8 +44,9 @@ function ControlsAndInput(){
 
 		if(selectedSong != -1) {
 			if(this.playbackButton.playing) {
-				songs.songs[menu.currentSong].pause();
-				songs.songs[selectedSong].loop();
+				songs.list[menu.currentSong].pause();
+				songs.curTime = 0;
+				songs.list[selectedSong].play(songs.curTime);
 			}
 			menu.currentSong = selectedSong;
 		}

@@ -27,9 +27,11 @@ function PlaybackButton(){
 	this.hitCheck = function(){
 		if(mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height){
 			if (this.playing) {
-    			songs.songs[menu.currentSong].pause();
+				songs.curTime = songs.list[menu.currentSong].currentTime();
+    			songs.list[menu.currentSong].pause();
+
   			} else {
-				songs.songs[menu.currentSong].loop();
+				songs.list[menu.currentSong].play(songs.curTime);
   			}
   			this.playing = !this.playing;
   			return true;

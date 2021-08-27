@@ -21,13 +21,13 @@ var menu;
 function preload(){
 	songs = new SongsList();
 	songs.names.push("Electroman Adventure");
-	songs.songs.push(loadSound("assets/ElectromanAdverture.mp3"));
+	songs.list.push(loadSound("assets/ElectromanAdverture.mp3"));
 	songs.names.push("Game on");
-	songs.songs.push(loadSound('assets/GameOn.mp3'));
+	songs.list.push(loadSound('assets/GameOn.mp3'));
 	songs.names.push("Titanium");
-	songs.songs.push(loadSound("assets/Titanium.mp3"));
+	songs.list.push(loadSound("assets/Titanium.mp3"));
 	songs.names.push("cool song");
-	songs.songs.push(loadSound("assets/stomper_reggae_bit.mp3"));
+	songs.list.push(loadSound("assets/stomper_reggae_bit.mp3"));
 
 	images = new Images();
 	//image name, x and y positions, width and image itself
@@ -109,7 +109,9 @@ function draw(){
 		translate(-width / 2, -height / 2);
 
 		menu.visuals[menu.selectedVisIndex].draw();
-		menu.drawMenu()
+		menu.drawMenu();
+
+		console.log(songs.list[menu.currentSong].currentTime() + "/" + songs.list[menu.currentSong].duration())
 
 		//draw the controls on top.
 		controls.draw();
