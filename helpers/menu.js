@@ -47,6 +47,7 @@ function Menu(){
         }
 
         //list all songs
+        fill(93,63,211);
         text("Select a song", this.songX - this.posX, this.songY);
         for(var i = 0; i < songs.names.length; i++) {
             if(this.currentSong == i) {
