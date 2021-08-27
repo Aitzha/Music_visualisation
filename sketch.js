@@ -26,19 +26,19 @@ function preload(){
 	sound = loadSound("assets/ElectromanAdverture.mp3");
 
 	songs = new Songs();
-	songs.name.push("Electroman Adventure");
-	songs.song.push(loadSound("assets/ElectromanAdverture.mp3"));
-	songs.name.push("Game on");
-	songs.song.push(loadSound('assets/GameOn.mp3'));
-	songs.name.push("Titanium");
-	songs.song.push(loadSound("assets/Titanium.mp3"));
-	songs.name.push("cool song");
-	songs.song.push(loadSound("assets/stomper_reggae_bit.mp3"));
+	songs.names.push("Electroman Adventure");
+	songs.songs.push(loadSound("assets/ElectromanAdverture.mp3"));
+	songs.names.push("Game on");
+	songs.songs.push(loadSound('assets/GameOn.mp3'));
+	songs.names.push("Titanium");
+	songs.songs.push(loadSound("assets/Titanium.mp3"));
+	songs.names.push("cool song");
+	songs.songs.push(loadSound("assets/stomper_reggae_bit.mp3"));
 
-	song.push(songs.name[0]);
-	song.push(songs.name[1]);
-	song.push(songs.name[2]);
-	song.push(songs.name[3]);
+	song.push(songs.names[0]);
+	song.push(songs.names[1]);
+	song.push(songs.names[2]);
+	song.push(songs.names[3]);
 
 	images = new Images();
 	//image name, x and y positions, width and image itself
@@ -66,10 +66,10 @@ function setup(){
 	 menu.posX = width / 8;
 
 
-	menu.add(new Spectrum());
-	menu.add(new Spectrum2());
-	menu.add(new Spectrum3());
-	menu.add(new Circle());
+	menu.addVis(new Spectrum());
+	menu.addVis(new Spectrum2());
+	menu.addVis(new Spectrum3());
+	menu.addVis(new Circle());
 
 	 controls = new ControlsAndInput();
 
@@ -85,7 +85,7 @@ function setup(){
 	 gui.addGlobals('fps');
 	 sliderRange(1, 32, 1);
 	 gui.addGlobals('spectrumDivider');
-	 gui.addGlobals('song', 'imageForCircleMode', 'figuresForSpectrum3', 'modesForSpectrum3');
+	 gui.addGlobals('imageForCircleMode', 'figuresForSpectrum3', 'modesForSpectrum3');
 
 
 	 //add font
@@ -123,16 +123,16 @@ function draw(){
 		menu.drawMenu()
 
 		//update the song
-		if(song != curSound) {
-			for(var i = 0; i < songs.name.length; i++) {
-				if(song == songs.name[i]) {
-					sound.stop();
-					sound = songs.song[i];
-					curSound = songs.name[i];
-					sound.loop();
-				}
-			}
-		}
+		// if(song != curSound) {
+		// 	for(var i = 0; i < songs.names.length; i++) {
+		// 		if(song == songs.names[i]) {
+		// 			sound.stop();
+		// 			sound = songs.songs[i];
+		// 			curSound = songs.names[i];
+		// 			sound.loop();
+		// 		}
+		// 	}
+		// }
 
 		//draw the controls on top.
 		controls.draw();

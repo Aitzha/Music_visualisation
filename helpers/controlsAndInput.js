@@ -8,7 +8,8 @@ function ControlsAndInput(){
 	this.mousePressed = function(){
 		if(this.playbackButton.hitCheck());
 
-		var selected = -1;
+		//changes visuals
+		var selectedVis = -1;
 		textSize(width / 120);
 		for(var i = 0; i < menu.visuals.length; i++) {
 			var x = menu.visuals[i].x + menu.posX - width / 8;
@@ -17,15 +18,41 @@ function ControlsAndInput(){
 			var h = width / 120;
 
 			if(mouseX >= x && mouseX <= w + x && mouseY >= y - h && mouseY <= y) {
-				selected = i;
+				selectedVis = i;
 			}
 		}
 
-		if(selected != -1) {
+		if(selectedVis != -1) {
 			menu.visuals[menu.selectedVisIndex].used = false;
-			menu.visuals[selected].used = true;
-			menu.selectedVisIndex = selected;
+			menu.visuals[selectedVis].used = true;
+			menu.selectedVisIndex = selectedVis;
 		}
+
+		//change songs
+		var selectedSong = -1;
+		textSize(width / 120);
+		for(var i = 0; i < songs.names.length; i++) {
+			var x = menu.songX - menu.posX - width / 50;
+			var y = menu.songY + (height / 30 * (i + 1));
+			var w = textWidth(i + 1 + " " + songs.names[i]);
+			var h = width / 120;
+
+			// rect(x, y - h, w, h);
+
+			if(mouseX >= x && mouseX <= w + x && mouseY >= y - h && mouseY <= y) {
+				selectedSong = i;
+			}
+		}
+
+		if(selectedSong != -1) {
+			if(this.playbackButton.playing) {
+				songs.songs[menu.currentSong].pause();
+				songs.songs[selectedSong].loop();
+			}
+			menu.currentSong = selectedSong;
+		}
+
+
 
 	};
 

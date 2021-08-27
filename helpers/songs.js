@@ -1,4 +1,4 @@
 function Songs() {
-    this.name = [];
-    this.song = [];
+    this.names = [];
+    this.songs = [];
 }
