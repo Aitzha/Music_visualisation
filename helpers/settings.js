@@ -20,6 +20,18 @@ function settings() {
     this.imgPosY = height / 2.5;
     this.imageChosen = null;
 
+    // var figuresForSpectrum3 = ["triangle", "squares"];
+    // var modesForSpectrum3 = [1, 2];
+
+    //modes for Spectrum
+    this.spectrum3Mode = 1;
+    this.modePosX = width * 1.03;
+    this.modePosY = height / 1.75;
+
+    this.spectrum3Figures = "triangles";
+    this.figuresPosX = width * 1.0154;
+    this.figuresPosY = height / 1.4;
+
 
     this.draw = function(){
         if(mouseX >= this.fpsPosX + 6 && mouseX <= this.fpsPosX + this.fpsW &&
@@ -49,8 +61,11 @@ function settings() {
         text("Spectrum divider: " + this.div, width/46 + menu.posX - width/8, this.divPosY + height/55);
 
 
+
+
+
         fill(93,63,211);
-        text("Select icon for circle vis", width * 1.01 - menu.posX, this.imgPosY);
+        text("Select circle vis icon", width * 1.01 - menu.posX, this.imgPosY);
         for(var i = 0; i < icon.names.length; i++) {
             if(this.imageChosen == icon.names[i]) {
                 fill(255);
@@ -59,5 +74,46 @@ function settings() {
             }
             text((1 + i) + " " + icon.names[i], this.imgPosX - menu.posX, this.imgPosY + (height/30 * (i + 1)));
         }
+
+
+
+
+        fill(93,63,211);
+        text("Select spectrum3 mode", width * 1.01 - menu.posX, this.modePosY);
+        if(this.spectrum3Mode == 1) {
+            fill(255);
+            rect2(this.modePosX - menu.posX, this.modePosY + (height/55), width/40, height/20, 5);
+            fill(93,63,211);
+            rect2(this.modePosX - menu.posX + width/25, this.modePosY + (height/55), width/40, height/20, 5);
+        } else {
+            fill(93,63,211);
+            rect2(this.modePosX - menu.posX, this.modePosY + (height/55), width/40, height/20, 5);
+            fill(255);
+            rect2(this.modePosX - menu.posX + width/25, this.modePosY + (height/55), width/40, height/20, 5);
+        }
+
+        textSize(width / 80);
+        fill(0);
+        text('1', this.modePosX - menu.posX + width/100, this.modePosY + (height/20));
+        text('2', this.modePosX - menu.posX + width/20.3, this.modePosY + (height/20));
+        textSize(width / 120);
+
+
+
+
+        fill(93,63,211);
+        text("Select spectrum3 figures", width * 1.01 - menu.posX, this.figuresPosY);
+        if(this.spectrum3Figures == "triangles") {
+            fill(255);
+            text("1 triangles", this.figuresPosX - menu.posX, this.figuresPosY + (height / 30));
+            fill(93,63,211);
+            text("2 squares", this.figuresPosX - menu.posX, this.figuresPosY + (height / 15));
+        } else {
+            fill(93,63,211);
+            text("1 triangles", this.figuresPosX - menu.posX, this.figuresPosY + (height / 30));
+            fill(255);
+            text("2 squares", this.figuresPosX - menu.posX, this.figuresPosY + (height / 15));
+        }
+
     }
 }

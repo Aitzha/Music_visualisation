@@ -67,6 +67,33 @@ function ControlsAndInput(){
 		if(selectedImage != -1) {
 			settings.imageChosen = icon.names[selectedImage];
 		}
+
+
+		//change spectrum3 mode
+		var x1 = settings.modePosX - menu.posX;
+		var y = settings.modePosY + (height/55);
+		var x2 = x1 + width/25;
+		var w = width/40;
+		var h = height/20;
+		if(mouseX >= x1 && mouseX <= x1 + w && mouseY >= y && mouseY <= h + y) {
+			settings.spectrum3Mode = 1;
+		} else if(mouseX >= x2 && mouseX <= x2 + w && mouseY >= y && mouseY <= h + y) {
+			settings.spectrum3Mode = 2;
+		}
+
+
+		//change spectrum3 figure
+		var x = settings.figuresPosX - menu.posX;
+		var y1 = settings.figuresPosY + (height/30);
+		var y2 = settings.figuresPosY + (height/15);
+		var w1 = textWidth("1 triangles");
+		var w2 = textWidth("2 squares");
+		var h = height/120;
+		if(mouseX >= x && mouseX <= x + w1 && mouseY >= y1 - h && mouseY <= y1) {
+			settings.spectrum3Figures = "triangles";
+		} else if(mouseX >= x && mouseX <= x + w2 && mouseY >= y2 - h && mouseY <= y2) {
+			settings.spectrum3Figures = "squares";
+		}
 	};
 
 

@@ -3,7 +3,6 @@ function Spectrum3() {
     this.x = 0;
     this.y = 0;
     this.w = textWidth(this.name);
-    this.used = false;
     this.figures = new Figures();
 
     this.draw = function(){
@@ -30,7 +29,7 @@ function Spectrum3() {
         this.figures.draw();
         stroke(0 ,0, 255);
 
-        if(modesForSpectrum3 == 1) {
+        if(settings.spectrum3Mode == 1) {
             for(var i = 0; i < 4; i++) {
                 beginShape();
                 for(var j = 0; j < spectrum.length; j++) {

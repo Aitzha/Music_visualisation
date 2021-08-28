@@ -30,7 +30,7 @@ function Figures() {
             rectMode(CENTER);
             this.brightness[i] = map(abs(this.yPos[i]), 0, height / 4, 0, 255);
 
-            if(figuresForSpectrum3 == "triangle") {
+            if(settings.spectrum3Figures == "triangles") {
                 //glowing effect
                 for(var j = 1; j < 5; j++) {
                     strokeWeight(0.5);

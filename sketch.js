@@ -6,18 +6,11 @@ var songs = null;
 var fourier;
 //images which will be used in circle
 //variable like graphical user interface, fps (frames per second) and font
-var gui;
 var myFont;
-//modes and figures for spectrum 3
-var figuresForSpectrum3 = ["triangle", "squares"];
-var modesForSpectrum3 = [1, 2];
 
 var menu;
-
 var audioPlayer;
-
 var settings;
-
 var icon;
 
 function preload(){
@@ -62,8 +55,6 @@ function setup(){
 	fourier = new p5.FFT();
 
 	//create graphical user interface
-	gui = createGui("Music visualiser controller");
-	gui.addGlobals('figuresForSpectrum3', 'modesForSpectrum3');
 
 
 	//add font
