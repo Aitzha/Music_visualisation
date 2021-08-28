@@ -27,7 +27,7 @@ function PlaybackButton(){
 	this.hitCheck = function(){
 		if(mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height){
 			if (songs.list[menu.currentSong].isPlaying()) {
-    			songs.list[menu.currentSong].stop();
+    			songs.list[menu.currentSong].pause();
   			} else {
 				songs.list[menu.currentSong].loop();
 			}

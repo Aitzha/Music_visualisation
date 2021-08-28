@@ -54,12 +54,12 @@ function Figures() {
             }
 
 
-            this.xPos[i] += this.xVelocity[i] / fps;
-            this.yPos[i] += this.yVelocity[i] / fps;
+            this.xPos[i] += this.xVelocity[i] / settings.fps;
+            this.yPos[i] += this.yVelocity[i] / settings.fps;
 
-            this.curX[i] += this.xRotate[i] / fps;
-            this.curY[i] += this.yRotate[i] / fps;
-            this.curZ[i] += this.zRotate[i] / fps;
+            this.curX[i] += this.xRotate[i] / settings.fps;
+            this.curY[i] += this.yRotate[i] / settings.fps;
+            this.curZ[i] += this.zRotate[i] / settings.fps;
             pop();
         }
     }

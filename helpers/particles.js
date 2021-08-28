@@ -18,11 +18,11 @@ function Particles() {
                 push();
                 translate(0, 0, 0.5);
                 ellipse(this.pPosX[i], this.pPosY[i], 2);
-                this.pDarkness[i]  += 10 / fps;
+                this.pDarkness[i]  += 10 / settings.fps;
                 pop();
             }
-            this.pPosX[i] += this.pVelocityX[i] / fps;
-            this.pPosY[i] += this.pVelocityY[i] / fps;
+            this.pPosX[i] += this.pVelocityX[i] / settings.fps;
+            this.pPosY[i] += this.pVelocityY[i] / settings.fps;
         }
     }
 

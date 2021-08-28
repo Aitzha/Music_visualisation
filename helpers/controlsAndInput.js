@@ -49,10 +49,12 @@ function ControlsAndInput(){
 			}
 			menu.currentSong = selectedSong;
 		}
-
-
-
 	};
+
+
+
+
+
 
 	//responds to keyboard presses
 	//@param keycode the ascii code of the keypressed

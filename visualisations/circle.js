@@ -9,10 +9,10 @@ function Circle(){
 
     this.draw = function(){
         push();
-        this.initialAngle += PI / 60 / fps;
+        this.initialAngle += PI / 60 / settings.fps;
 
         var spectrumOri = fourier.analyze();
-        var divider =  spectrumDivider;
+        var divider =  settings.div;
         var spectrum = [];
 
 

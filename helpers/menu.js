@@ -24,9 +24,9 @@ function Menu(){
         translate(0, 0, 1);
         textSize(width / 120);
         if(this.menuOpen) {
-            this.posX = constrain(this.posX + width / 8 / fps, 0, width / 8);
+            this.posX = constrain(this.posX + width / 8 / settings.fps, 0, width / 8);
         } else {
-            this.posX = constrain(this.posX - width / 8 / fps, 0, width / 8);
+            this.posX = constrain(this.posX - width / 8 / settings.fps, 0, width / 8);
         }
 
         //draws men itself
@@ -58,7 +58,10 @@ function Menu(){
             var x  = width / 50;
             text((i + 1) + " " + songs.names[i], this.songX - this.posX - x, this.songY + (height / 30 * (i + 1)));
         }
+
+        settings.draw();
         pop();
+
     }
 
     //shows tutorial at the beginning

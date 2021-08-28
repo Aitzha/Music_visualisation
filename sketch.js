@@ -9,9 +9,7 @@ var images = null;
 var imageForCircleMode = [];
 //variable like graphical user interface, fps (frames per second) and font
 var gui;
-var fps = 60;
 var myFont;
-var spectrumDivider = 16;
 //modes and figures for spectrum 3
 var figuresForSpectrum3 = ["triangle", "squares"];
 var modesForSpectrum3 = [1, 2];
@@ -19,6 +17,8 @@ var modesForSpectrum3 = [1, 2];
 var menu;
 
 var audioPlayer;
+
+var settings;
 
 function preload(){
 	songs = new SongsList();
@@ -51,10 +51,10 @@ function preload(){
 }
 
 function setup(){
-	 createCanvas(windowWidth, windowHeight, WEBGL);
-	 smooth();
-	 menu = new Menu();
-	 menu.posX = width / 8;
+	createCanvas(windowWidth, windowHeight, WEBGL);
+	smooth();
+	menu = new Menu();
+	menu.posX = width / 8;
 	menu.addVis(new Spectrum());
 	menu.addVis(new Spectrum2());
 	menu.addVis(new Spectrum3());
@@ -62,32 +62,30 @@ function setup(){
 
 	audioPlayer = new audioPlayer();
 
-	 controls = new ControlsAndInput();
 
-	 //instantiate the fft object
-	 fourier = new p5.FFT();
+	controls = new ControlsAndInput();
+	settings = new settings();
 
-	 //create a new visualisation container and add visualisations
+	//instantiate the fft object
+	fourier = new p5.FFT();
 
-
-	 //create graphical user interface
-	 gui = createGui("Music visualiser controller");
-	 sliderRange(5, 60, 1);
-	 gui.addGlobals('fps');
-	 sliderRange(1, 32, 1);
-	 gui.addGlobals('spectrumDivider');
-	 gui.addGlobals('imageForCircleMode', 'figuresForSpectrum3', 'modesForSpectrum3');
+	//create a new visualisation container and add visualisations
 
 
-	 //add font
-	 myFont = loadFont("fonts/cubano-regular-webfont.woff");
-	 textFont(myFont);
+	//create graphical user interface
+	gui = createGui("Music visualiser controller");
+	gui.addGlobals('imageForCircleMode', 'figuresForSpectrum3', 'modesForSpectrum3');
 
 
-	 //add position and size of pics
-	 images.x.push(width / 2 - height / 3 - 7); images.y.push(height / 6 - 7); images.width.push(height / 1.5 + 17);
-	 images.x.push(width / 2 - height / 5); images.y.push(height / 4); images.width.push(0);
-	 images.x.push(width / 2 - height / 4 + 7); images.y.push(height / 4 - 10); images.width.push(height / 2);
+	//add font
+	myFont = loadFont("fonts/cubano-regular-webfont.woff");
+	textFont(myFont);
+
+
+	//add position and size of pics
+	images.x.push(width / 2 - height / 3 - 7); images.y.push(height / 6 - 7); images.width.push(height / 1.5 + 17);
+	images.x.push(width / 2 - height / 5); images.y.push(height / 4); images.width.push(0);
+	images.x.push(width / 2 - height / 4 + 7); images.y.push(height / 4 - 10); images.width.push(height / 2);
 
 
 }
@@ -97,7 +95,7 @@ function draw(){
 	background(0);
 
 	//update frame rate
-	frameRate(fps);
+	frameRate(settings.fps);
 
 	//tutorial
 	if(!menu.tutorial) {
@@ -109,15 +107,17 @@ function draw(){
 	} else {
 		//draw the selected visualisation
 		translate(-width / 2, -height / 2);
-
 		menu.visuals[menu.selectedVisIndex].draw();
 		menu.drawMenu();
+
+
 
 		// console.log(songs.list[menu.currentSong].currentTime() + "/" + songs.list[menu.currentSong].duration())
 
 		//draw the controls on top.
 		controls.draw();
-		audioPlayer.draw();
+
+		// audioPlayer.draw();
 	}
 
 
@@ -137,6 +137,7 @@ function rect2(x, y, w, h, r){
 	circle(x + w - r, y + r, d);
 	circle(x + r, y + h - r, d);
 	circle(x + w - r, y + h - r, d);
+	rectMode(CORNER);
 	rect(x + r, y, w - (2 * r), h);
 	rect(x, y + r, w, h - (2 * r));
 }

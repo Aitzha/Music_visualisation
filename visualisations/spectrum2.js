@@ -8,7 +8,7 @@ function Spectrum2(){
     this.draw = function(){
         push();
         var spectrumOri = fourier.analyze();
-        var divider = spectrumDivider;
+        var divider = settings.div;
         var spectrum = [];
 
         for(var i = 0; i < spectrumOri.length / divider; i++) {
