@@ -45,8 +45,7 @@ function ControlsAndInput(){
 		if(selectedSong != -1) {
 			if(this.playbackButton.playing) {
 				songs.list[menu.currentSong].pause();
-				songs.curTime = 0;
-				songs.list[selectedSong].play(songs.curTime);
+				songs.list[selectedSong].loop();
 			}
 			menu.currentSong = selectedSong;
 		}

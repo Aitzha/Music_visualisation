@@ -18,6 +18,8 @@ var modesForSpectrum3 = [1, 2];
 
 var menu;
 
+var audioPlayer;
+
 function preload(){
 	songs = new SongsList();
 	songs.names.push("Electroman Adventure");
@@ -53,12 +55,12 @@ function setup(){
 	 smooth();
 	 menu = new Menu();
 	 menu.posX = width / 8;
-
-
 	menu.addVis(new Spectrum());
 	menu.addVis(new Spectrum2());
 	menu.addVis(new Spectrum3());
 	menu.addVis(new Circle());
+
+	audioPlayer = new audioPlayer();
 
 	 controls = new ControlsAndInput();
 
@@ -111,15 +113,20 @@ function draw(){
 		menu.visuals[menu.selectedVisIndex].draw();
 		menu.drawMenu();
 
-		console.log(songs.list[menu.currentSong].currentTime() + "/" + songs.list[menu.currentSong].duration())
+		// console.log(songs.list[menu.currentSong].currentTime() + "/" + songs.list[menu.currentSong].duration())
 
 		//draw the controls on top.
 		controls.draw();
+		audioPlayer.draw();
 	}
 
 
 
 
+}
+
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
 }
 
 //draws rectangle with rounded angles and have parameters as in rectMode(CORNER)

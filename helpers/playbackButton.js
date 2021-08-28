@@ -26,13 +26,11 @@ function PlaybackButton(){
 	//@returns true if clicked false otherwise.
 	this.hitCheck = function(){
 		if(mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height){
-			if (this.playing) {
-				songs.curTime = songs.list[menu.currentSong].currentTime();
-    			songs.list[menu.currentSong].pause();
-
+			if (songs.list[menu.currentSong].isPlaying()) {
+    			songs.list[menu.currentSong].stop();
   			} else {
-				songs.list[menu.currentSong].play(songs.curTime);
-  			}
+				songs.list[menu.currentSong].loop();
+			}
   			this.playing = !this.playing;
   			return true;
 		}
