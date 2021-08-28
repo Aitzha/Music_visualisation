@@ -5,8 +5,6 @@ var songs = null;
 //variable for p5 fast fourier transform
 var fourier;
 //images which will be used in circle
-var images = null;
-var imageForCircleMode = [];
 //variable like graphical user interface, fps (frames per second) and font
 var gui;
 var myFont;
@@ -20,6 +18,8 @@ var audioPlayer;
 
 var settings;
 
+var icon;
+
 function preload(){
 	songs = new SongsList();
 	songs.names.push("Electroman Adventure");
@@ -31,23 +31,15 @@ function preload(){
 	songs.names.push("cool song");
 	songs.list.push(loadSound("assets/stomper_reggae_bit.mp3"));
 
-	images = new Images();
-	//image name, x and y positions, width and image itself
-	images.name.push("Apples ITunes Logo");
-	images.image.push(loadImage("assets/Applemusicandroid-512.png"));
+	icon = new Images();
+	icon.names.push("Apples ITunes Logo");
+	icon.images.push(loadImage("assets/Applemusicandroid-512.png"));
 
-	//image name, x and y positions, width and image itself
-	images.name.push("Loremaster");
-	images.image.push(loadImage("assets/Loremaster.png"));
+	icon.names.push("Loremaster");
+	icon.images.push(loadImage("assets/Loremaster.png"));
 
-	//image name, x and y positions, width and image itself
-	images.name.push("House Music");
-	images.image.push(loadImage("assets/headphones.png"));
-
-
-	imageForCircleMode.push(images.name[0]);
-	imageForCircleMode.push(images.name[1]);
-	imageForCircleMode.push(images.name[2]);
+	icon.names.push("House Music");
+	icon.images.push(loadImage("assets/headphones.png"));
 }
 
 function setup(){
@@ -60,21 +52,18 @@ function setup(){
 	menu.addVis(new Spectrum3());
 	menu.addVis(new Circle());
 
-	audioPlayer = new audioPlayer();
-
+	// audioPlayer = new audioPlayer();
 
 	controls = new ControlsAndInput();
 	settings = new settings();
+	settings.imageChosen = "House Music";
 
 	//instantiate the fft object
 	fourier = new p5.FFT();
 
-	//create a new visualisation container and add visualisations
-
-
 	//create graphical user interface
 	gui = createGui("Music visualiser controller");
-	gui.addGlobals('imageForCircleMode', 'figuresForSpectrum3', 'modesForSpectrum3');
+	gui.addGlobals('figuresForSpectrum3', 'modesForSpectrum3');
 
 
 	//add font
@@ -83,11 +72,9 @@ function setup(){
 
 
 	//add position and size of pics
-	images.x.push(width / 2 - height / 3 - 7); images.y.push(height / 6 - 7); images.width.push(height / 1.5 + 17);
-	images.x.push(width / 2 - height / 5); images.y.push(height / 4); images.width.push(0);
-	images.x.push(width / 2 - height / 4 + 7); images.y.push(height / 4 - 10); images.width.push(height / 2);
-
-
+	icon.x.push(width / 2 - height / 3 - 7); icon.y.push(height / 6 - 7); icon.width.push(height / 1.5 + 17);
+	icon.x.push(width / 2 - height / 5); icon.y.push(height / 4); icon.width.push(0);
+	icon.x.push(width / 2 - height / 4 + 7); icon.y.push(height / 4 - 10); icon.width.push(height / 2);
 }
 
 function draw(){
@@ -110,23 +97,10 @@ function draw(){
 		menu.visuals[menu.selectedVisIndex].draw();
 		menu.drawMenu();
 
-
-
-		// console.log(songs.list[menu.currentSong].currentTime() + "/" + songs.list[menu.currentSong].duration())
-
 		//draw the controls on top.
 		controls.draw();
-
 		// audioPlayer.draw();
 	}
-
-
-
-
-}
-
-function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
 }
 
 //draws rectangle with rounded angles and have parameters as in rectMode(CORNER)

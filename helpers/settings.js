@@ -1,4 +1,5 @@
 function settings() {
+    //fps
     this.fpsPosX = width / 60;
     this.fpsPosY = height / 1.4;
     this.fpsW = width / 11;
@@ -6,6 +7,7 @@ function settings() {
     this.fpsCurPosX = ((2 * this.fpsPosX) + this.fpsW) / 2;
     this.fps = 30;
 
+    //spectrum dividers
     this.divPosX = width / 60;
     this.divPosY = height / 1.3;
     this.divW = width / 11;
@@ -13,9 +15,13 @@ function settings() {
     this.divCurPosX = ((2 * this.fpsPosX) + this.fpsW) / 2;
     this.div = 16;
 
+    //images
+    this.imgPosX = width * 1.0154;
+    this.imgPosY = height / 2.5;
+    this.imageChosen = null;
+
 
     this.draw = function(){
-        push();
         if(mouseX >= this.fpsPosX + 6 && mouseX <= this.fpsPosX + this.fpsW &&
             mouseY >= this.fpsPosY && mouseY <= this.fpsPosY + this.fpsH && mouseIsPressed) {
             this.fpsCurPosX = mouseX;
@@ -41,6 +47,17 @@ function settings() {
         fill(255, 0, 0);
         text("fps: "  + this.fps, width/21 + menu.posX - width/8, this.fpsPosY + height/55);
         text("Spectrum divider: " + this.div, width/46 + menu.posX - width/8, this.divPosY + height/55);
-        pop();
+
+
+        fill(93,63,211);
+        text("Select icon for circle vis", width * 1.01 - menu.posX, this.imgPosY);
+        for(var i = 0; i < icon.names.length; i++) {
+            if(this.imageChosen == icon.names[i]) {
+                fill(255);
+            } else {
+                fill(93,63,211);
+            }
+            text((1 + i) + " " + icon.names[i], this.imgPosX - menu.posX, this.imgPosY + (height/30 * (i + 1)));
+        }
     }
 }

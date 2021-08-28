@@ -1,6 +1,6 @@
 function Images() {
-    this.name = [];
-    this.image = [];
+    this.names = [];
+    this.images = [];
     this.x = [];
     this.y = [];
     this.width = [];

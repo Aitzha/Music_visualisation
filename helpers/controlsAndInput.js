@@ -49,6 +49,24 @@ function ControlsAndInput(){
 			}
 			menu.currentSong = selectedSong;
 		}
+
+		//change images
+		var selectedImage = -1;
+		textSize(width / 120);
+		for(var i = 0; i < icon.names.length; i++) {
+			var x = settings.imgPosX - menu.posX;
+			var y = settings.imgPosY + (height / 30 * (i + 1));
+			var w = textWidth(i + 1 + " " + icon.names[i]);
+			var h = width / 120;
+
+			if(mouseX >= x && mouseX <= w + x && mouseY >= y - h && mouseY <= y) {
+				selectedImage = i;
+			}
+		}
+
+		if(selectedImage != -1) {
+			settings.imageChosen = icon.names[selectedImage];
+		}
 	};
 
 

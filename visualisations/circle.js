@@ -31,12 +31,12 @@ function Circle(){
         rect(width / 2 - height / 4 - 10, height / 4 - 10, height / 2 + 20, height / 2 + 20);
 
         //draw selected image
-        for(var i = 0; i < images.name.length; i++) {
-            if(imageForCircleMode == images.name[i]) {
-                if(images.width[i] == 0) {
-                    image(images.image[i], images.x[i], images.y[i]);
+        for(var i = 0; i < icon.names.length; i++) {
+            if(settings.imageChosen == icon.names[i]) {
+                if(icon.width[i] == 0) {
+                    image(icon.images[i], icon.x[i], icon.y[i]);
                 } else {
-                    image(images.image[i], images.x[i], images.y[i], images.width[i], images.width[i]);
+                    image(icon.images[i], icon.x[i], icon.y[i], icon.width[i], icon.width[i]);
                 }
             }
         }
