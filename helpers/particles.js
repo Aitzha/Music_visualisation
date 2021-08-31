@@ -28,7 +28,7 @@ function Particles() {
 
 
     this.regenerate = function() {
-        if(songs.list[menu.currentSong].isPlaying()) {
+        if(songs.list[settings.currentSong].isPlaying()) {
             for(var i = 0; i < this.n; i++) {
                 if(this.pDarkness[i] >= 255 ||
                 this.pPosX[i] < 0 || this.pPosX[i] > width ||

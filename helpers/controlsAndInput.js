@@ -8,13 +8,15 @@ function ControlsAndInput(){
 	this.mousePressed = function(){
 		if(this.playbackButton.hitCheck());
 
+		console.log(settings.selectedVisIndex);
+
 		//changes visuals
 		var selectedVis = -1;
 		textSize(width / 120);
-		for(var i = 0; i < menu.visuals.length; i++) {
-			var x = menu.visuals[i].x + menu.posX - width / 8;
-			var y = menu.visuals[i].y;
-			var w = menu.visuals[i].w + textWidth(i + 1 + " ");
+		for(var i = 0; i < settings.visuals.length; i++) {
+			var x = settings.visuals[i].x + settings.menuPosX - width / 8;
+			var y = settings.visuals[i].y;
+			var w = settings.visuals[i].w + textWidth(i + 1 + " ");
 			var h = width / 120;
 
 			if(mouseX >= x && mouseX <= w + x && mouseY >= y - h && mouseY <= y) {
@@ -23,17 +25,15 @@ function ControlsAndInput(){
 		}
 
 		if(selectedVis != -1) {
-			menu.visuals[menu.selectedVisIndex].used = false;
-			menu.visuals[selectedVis].used = true;
-			menu.selectedVisIndex = selectedVis;
+			settings.selectedVisIndex = selectedVis;
 		}
 
 		//change songs
 		var selectedSong = -1;
 		textSize(width / 120);
 		for(var i = 0; i < songs.names.length; i++) {
-			var x = menu.songX - menu.posX - width / 50;
-			var y = menu.songY + (height / 30 * (i + 1));
+			var x = settings.songPosX - settings.menuPosX - width / 50;
+			var y = settings.songPosY + (height / 30 * (i + 1));
 			var w = textWidth(i + 1 + " " + songs.names[i]);
 			var h = width / 120;
 
@@ -44,17 +44,17 @@ function ControlsAndInput(){
 
 		if(selectedSong != -1) {
 			if(this.playbackButton.playing) {
-				songs.list[menu.currentSong].pause();
+				songs.list[settings.currentSong].pause();
 				songs.list[selectedSong].loop();
 			}
-			menu.currentSong = selectedSong;
+			settings.currentSong = selectedSong;
 		}
 
 		//change images
 		var selectedImage = -1;
 		textSize(width / 120);
 		for(var i = 0; i < icon.names.length; i++) {
-			var x = settings.imgPosX - menu.posX;
+			var x = settings.imgPosX - settings.menuPosX;
 			var y = settings.imgPosY + (height / 30 * (i + 1));
 			var w = textWidth(i + 1 + " " + icon.names[i]);
 			var h = width / 120;
@@ -70,7 +70,7 @@ function ControlsAndInput(){
 
 
 		//change spectrum3 mode
-		var x1 = settings.modePosX - menu.posX;
+		var x1 = settings.modePosX - settings.menuPosX;
 		var y = settings.modePosY + (height/55);
 		var x2 = x1 + width/25;
 		var w = width/40;
@@ -83,7 +83,7 @@ function ControlsAndInput(){
 
 
 		//change spectrum3 figure
-		var x = settings.figuresPosX - menu.posX;
+		var x = settings.figuresPosX - settings.menuPosX;
 		var y1 = settings.figuresPosY + (height/30);
 		var y2 = settings.figuresPosY + (height/15);
 		var w1 = textWidth("1 triangles");
@@ -98,29 +98,26 @@ function ControlsAndInput(){
 
 
 
-
-
-
 	//responds to keyboard presses
 	//@param keycode the ascii code of the keypressed
 	this.keyPressed = function(keycode){
 		console.log(keycode);
-		if(keycode == 32 && menu.tutorial == true){
-			this.menuDisplayed = !this.menuDisplayed;
-			menu.menuOpen = !menu.menuOpen
+		if(keycode == 32 && settings.tutorial == true){
+			settings.menuOpen = !settings.menuOpen
 		}
 
 		if(keycode == 13) {
-			menu.tutorial = true;
+			settings.tutorial = true;
 		}
 
 		if(keycode > 48 && keycode < 58){
 			var visNumber = keycode - 49;
-			menu.visuals[menu.selectedVisIndex].used = false;
-			menu.visuals[visNumber].used = true;
-			menu.selectedVisIndex = visNumber;
+			settings.visuals[settings.selectedVisIndex].used = false;
+			settings.visuals[visNumber].used = true;
+			settings.selectedVisIndex = visNumber;
 		}
 	};
+
 
 	//draws the playback button and potentially the menu
 	this.draw = function(){

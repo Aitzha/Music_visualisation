@@ -18,7 +18,7 @@ function audioPlayer() {
         rect3(this.posX, this.posY, this.width, this.height, 7);
 
         fill(255);
-        if(songs.list[menu.currentSong].isPlaying()){
+        if(songs.list[settings.currentSong].isPlaying()){
             rect(this.buttonPosX, this.buttonPosY, this.buttonW/2 - 2, this.buttonH);
             rect(this.buttonPosX + (this.buttonW/2 + 2), this.buttonPosY, this.buttonW/2 - 2, this.buttonH);
         }
@@ -33,7 +33,7 @@ function audioPlayer() {
         circle(this.audioLinePosX2, this.posY, this.audioLineH * 2);
 
         fill(255, 0, 0);
-        var songTime = songs.list[menu.currentSong].currentTime() / songs.list[menu.currentSong].duration();
+        var songTime = songs.list[settings.currentSong].currentTime() / songs.list[settings.currentSong].duration();
         var curTime = map(songTime, 0, 1, this.audioLinePosX1, this.audioLinePosX2);
 
         circle(this.audioLinePosX1, this.posY, this.audioLineH * 2);
@@ -46,10 +46,10 @@ function audioPlayer() {
     //@returns true if clicked false otherwise.
     this.hitCheck = function(){
         if(mouseX > this.buttonPosX && mouseX < this.buttonPosX + this.buttonW && mouseY > this.buttonPosY && mouseY < this.buttonPosY + this.buttonH){
-            if (songs.list[menu.currentSong].isPlaying()) {
-                songs.list[menu.currentSong].stop();
+            if (songs.list[settings.currentSong].isPlaying()) {
+                songs.list[settings.currentSong].stop();
             } else {
-                songs.list[menu.currentSong].loop();
+                songs.list[settings.currentSong].loop();
             }
             return true;
         }

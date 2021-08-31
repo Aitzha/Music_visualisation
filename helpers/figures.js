@@ -66,7 +66,7 @@ function Figures() {
 
 
     this.generate = function() {
-        if(songs.list[menu.currentSong].isPlaying()) {
+        if(songs.list[settings.currentSong].isPlaying()) {
             for(var i = 0; i < this.n; i++) {
                 if(abs(this.xPos[i]) > width / 2 || abs(this.yPos[i]) > height / 2) {
                     this.xPos[i] = random(-width / 3, width / 3);

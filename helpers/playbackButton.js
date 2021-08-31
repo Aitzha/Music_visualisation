@@ -26,10 +26,10 @@ function PlaybackButton(){
 	//@returns true if clicked false otherwise.
 	this.hitCheck = function(){
 		if(mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height){
-			if (songs.list[menu.currentSong].isPlaying()) {
-    			songs.list[menu.currentSong].pause();
+			if (songs.list[settings.currentSong].isPlaying()) {
+    			songs.list[settings.currentSong].pause();
   			} else {
-				songs.list[menu.currentSong].loop();
+				songs.list[settings.currentSong].loop();
 			}
   			this.playing = !this.playing;
   			return true;

@@ -2,12 +2,9 @@ function Spectrum(){
 	this.name = "spectrum";
 	this.x = 0;
 	this.y = 0;
-
 	this.w = textWidth(this.name);
-	this.used = true;
 
 	this.draw = function(){
-		push();
 		var spectrumOri = fourier.analyze();
 		var divider = settings.div;
 		var spectrum = [];
@@ -25,7 +22,6 @@ function Spectrum(){
 
 
 		for(var i = 0; i < spectrum.length; i++){
-
 			//fade the colour of the bin from green to red
 			var g = map(spectrum[i], 0, 255, 255, 0);
 			fill(spectrum[i], g, 0);
@@ -35,7 +31,6 @@ function Spectrum(){
 			var y = map(i, 0, spectrum.length, 0, height);
 			var w = map(spectrum[i], 0, 255, 0, width);
 			rect(0, y, w, height/spectrum.length);
-		}  		
-		pop();
+		}
 	};
 }

@@ -8,9 +8,8 @@ var fourier;
 //variable like graphical user interface, fps (frames per second) and font
 var myFont;
 
-var menu;
-var audioPlayer;
 var settings;
+var audioPlayer;
 var icon;
 
 function preload(){
@@ -38,18 +37,27 @@ function preload(){
 function setup(){
 	createCanvas(windowWidth, windowHeight, WEBGL);
 	smooth();
-	menu = new Menu();
-	menu.posX = width / 8;
-	menu.addVis(new Spectrum());
-	menu.addVis(new Spectrum2());
-	menu.addVis(new Spectrum3());
-	menu.addVis(new Circle());
+	// menu.menuPosX = width / 8;
+	// menu.addVis(new Spectrum());
+	// menu.addVis(new Spectrum2());
+	// menu.addVis(new Spectrum3());
+	// menu.addVis(new Circle());
+
+	controls = new ControlsAndInput();
+
+	settings = new Settings();
+	settings.menuPosX = width / 8;
+	settings.imageChosen = "House Music";
+	settings.addVis(new Spectrum());
+	settings.addVis(new Spectrum2());
+	settings.addVis(new Spectrum3());
+	settings.addVis(new Circle());
 
 	// audioPlayer = new audioPlayer();
 
-	controls = new ControlsAndInput();
-	settings = new settings();
-	settings.imageChosen = "House Music";
+
+
+
 
 	//instantiate the fft object
 	fourier = new p5.FFT();
@@ -76,17 +84,17 @@ function draw(){
 	frameRate(settings.fps);
 
 	//tutorial
-	if(!menu.tutorial) {
-		menu.drawTutorial();
-		for(var i = 0; i < menu.visuals.length; i++) {
+	if(!settings.tutorial) {
+		settings.drawTutorial();
+		for(var i = 0; i < settings.visuals.length; i++) {
 			textSize(width / 120);
-			menu.visuals[i].w = textWidth(menu.visuals[i].name);
+			settings.visuals[i].w = textWidth(settings.visuals[i].name);
 		}
 	} else {
 		//draw the selected visualisation
 		translate(-width / 2, -height / 2);
-		menu.visuals[menu.selectedVisIndex].draw();
-		menu.drawMenu();
+		settings.visuals[settings.selectedVisIndex].draw();
+		settings.draw();
 
 		//draw the controls on top.
 		controls.draw();

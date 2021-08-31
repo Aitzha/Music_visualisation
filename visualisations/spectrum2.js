@@ -3,7 +3,6 @@ function Spectrum2(){
     this.x = 0;
     this.y = 0;
     this.w = textWidth(this.name);
-    this.used = false;
 
     this.draw = function(){
         push();
