@@ -4,6 +4,7 @@ var controls = null;
 var songs = null;
 //variable for p5 fast fourier transform
 var fourier;
+var amplitude;
 //images which will be used in circle
 //variable like graphical user interface, fps (frames per second) and font
 var myFont;
@@ -37,11 +38,6 @@ function preload(){
 function setup(){
 	createCanvas(windowWidth, windowHeight, WEBGL);
 	smooth();
-	// menu.menuPosX = width / 8;
-	// menu.addVis(new Spectrum());
-	// menu.addVis(new Spectrum2());
-	// menu.addVis(new Spectrum3());
-	// menu.addVis(new Circle());
 
 	controls = new ControlsAndInput();
 
@@ -52,6 +48,7 @@ function setup(){
 	settings.addVis(new Spectrum2());
 	settings.addVis(new Spectrum3());
 	settings.addVis(new Circle());
+	settings.addVis(new Triangle());
 
 	// audioPlayer = new audioPlayer();
 
@@ -61,6 +58,7 @@ function setup(){
 
 	//instantiate the fft object
 	fourier = new p5.FFT();
+	amplitude = new p5.Amplitude();
 
 	//create graphical user interface
 

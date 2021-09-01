@@ -4,6 +4,7 @@ function Circle(){
     this.y = 0;
     this.w = textWidth(this.name);
     this.particles = new Particles();
+    this.particles.mode = "circle";
     this.initialAngle = 0;
 
     this.draw = function(){

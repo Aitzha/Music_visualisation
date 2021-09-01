@@ -115,11 +115,11 @@ function Settings() {
         rect2(this.fpsPosX - width/8 + this.menuPosX, this.fpsPosY, this.fpsW, this.fpsH, 3);
         rect2(this.divPosX - width/8 + this.menuPosX, this.divPosY, this.divW, this.divH, 3);
 
-        fill(0);
+        fill(190,190,190);
         rect2(this.fpsPosX - width/8 + this.menuPosX, this.fpsPosY, this.fpsCurPosX - this.fpsPosX, this.fpsH, 3);
         rect2(this.divPosX - width/8 + this.menuPosX, this.divPosY, this.divCurPosX - this.divPosX, this.divH, 3);
 
-        fill(255, 0, 0);
+        fill(93,63,211);
         text("fps: "  + this.fps, width/21 + this.menuPosX - width/8, this.fpsPosY + height/55);
         text("Spectrum divider: " + this.div, width/46 + this.menuPosX - width/8, this.divPosY + height/55);
 

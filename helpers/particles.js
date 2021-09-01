@@ -6,6 +6,7 @@ function Particles() {
     this.pDarkness = [];
     this.n = 300;
     this.created = false;
+    this.mode = null;
 
     this.draw = function() {
         this.regenerate();
@@ -14,7 +15,7 @@ function Particles() {
             fill(255 - this.pDarkness[i], 255 - this.pDarkness[i], 255 - this.pDarkness[i]);
             strokeWeight(1);
             stroke(0, 0, 255 - this.pDarkness[i]);
-            if(dist(width / 2, height / 2, this.pPosX[i], this.pPosY[i]) >= height / 4) {
+            if(dist(width / 2, height / 2, this.pPosX[i], this.pPosY[i]) >= height / 4 || this.mode == "triangle") {
                 push();
                 translate(0, 0, 0.5);
                 ellipse(this.pPosX[i], this.pPosY[i], 2);
