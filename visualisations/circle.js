@@ -1,20 +1,25 @@
 function Circle(){
+    //name of the visual
     this.name = "circle";
+
+    //x and y position of name of visual in menu and its width w
     this.x = 0;
     this.y = 0;
     this.w = textWidth(this.name);
+
+    //variables used to draw visual
     this.particles = new Particles();
     this.particles.mode = "circle";
     this.initialAngle = 0;
 
     this.draw = function(){
         push();
+        //by adding initialAngle variable, circle is rotated
         this.initialAngle += PI / 60 / settings.fps;
 
         var spectrumOri = fourier.analyze();
         var divider =  settings.div;
         var spectrum = [];
-
 
         //decrease number of frequencies in spectrum original
         for(var i = 0; i < spectrumOri.length / divider; i++) {
@@ -25,6 +30,7 @@ function Circle(){
             cur /= divider;
             spectrum.push(cur);
         }
+
 
         //draw white background behind the picture. We need to use .png pictures so white background would be visible
         fill(255);

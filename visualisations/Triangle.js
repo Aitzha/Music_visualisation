@@ -1,5 +1,8 @@
 function Triangle() {
+    //name of the function
     this.name = "triangle";
+
+    //x and y position of name of visual in menu and its width w
     this.x = 0;
     this.y = 0;
     this.w = textWidth(this.name);
@@ -8,18 +11,15 @@ function Triangle() {
 
     this.draw = function() {
         push();
+        //moves it along the z axis proportionally amp
         var amp = amplitude.getLevel();
         this.particles.draw();
-        // amp = map(amp, 0, 1, 0, 10);
         amp = map(amp, 0 ,1, 0, 150);
-        // amp = map(amp, 0, 1, 0, 25);
         translate(width/2, height/2.25, amp);
-        // rotateZ(PI/8 * (amp / 150));
 
         var spectrumOri = fourier.analyze();
         var divider =  settings.div * 2;
         var spectrum = [];
-
 
         //decrease number of frequencies in spectrum original
         for(var i = 0; i < spectrumOri.length / divider; i++) {

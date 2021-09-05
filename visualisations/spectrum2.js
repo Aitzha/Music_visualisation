@@ -1,5 +1,8 @@
 function Spectrum2(){
+    //name of the function
     this.name = "spectrum #2";
+
+    //x and y position of name of visual in menu and its width w
     this.x = 0;
     this.y = 0;
     this.w = textWidth(this.name);
@@ -10,6 +13,7 @@ function Spectrum2(){
         var divider = settings.div;
         var spectrum = [];
 
+        //decrease number of frequencies in spectrum original
         for(var i = 0; i < spectrumOri.length / divider; i++) {
             var cur = 0;
             for(var j = 0; j < divider; j++) {
@@ -24,13 +28,6 @@ function Spectrum2(){
         strokeWeight(weight);
 
         for (var i = 0; i < spectrum.length; i++){
-            // //vertical first version
-            // var x = map(i, 0, spectrum.length, 0, width);
-            // var y = map(spectrum[i], 0, 255, height / 2, 0);
-            // var h = map(spectrum[i], 0, 255, 0, height);
-            // fill(spectrum[i], 0, 255 - spectrum[i]);
-            // rect(x, y, width / spectrum.length, h);
-
             //vertical second version
             var x1 = map(i, 0, spectrum.length, width / 2, width);
             var x2 = map(i, 0, spectrum.length, width / 2, 0);
@@ -39,15 +36,6 @@ function Spectrum2(){
             fill(spectrum[i], 0, 255 - spectrum[i]);
             rect(x1, y, (width / 2) / spectrum.length, h);
             rect(x2, y, (width / 2) / spectrum.length, h);
-
-            //vertical third version
-            // var x1 = map(i, 0, spectrum.length, 0, width / 2);
-            // var x2 = map(i, 0, spectrum.length, width, width / 2);
-            // var y = map(spectrum[i], 0, 255, height / 2, 0);
-            // var h = map(spectrum[i], 0, 255, 0, height);
-            // fill(spectrum[i], 0, 255 - spectrum[i]);
-            // rect(x1, y, (width / 2) / spectrum.length, h);
-            // rect(x2, y, (width / 2) / spectrum.length, h);
         }
 
         pop();

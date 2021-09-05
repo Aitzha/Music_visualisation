@@ -1,8 +1,13 @@
 function Spectrum3() {
+    //name of the function
     this.name = "spectrum #3";
+
+    //x and y position of name of visual in menu and its width w
     this.x = 0;
     this.y = 0;
     this.w = textWidth(this.name);
+
+    //figure variable that will draw figures with main visual
     this.figures = new Figures();
 
     this.draw = function(){
@@ -11,6 +16,7 @@ function Spectrum3() {
         var divider = settings.div;
         var spectrum = [];
 
+        //decrease number of frequencies in spectrum original
         for(var i = 0; i < spectrumOri.length / divider; i++) {
             var cur = 0;
             for(var j = 0; j < divider; j++) {
@@ -19,7 +25,6 @@ function Spectrum3() {
             cur /= divider;
             spectrum.push(cur);
         }
-
 
 
         noFill();
